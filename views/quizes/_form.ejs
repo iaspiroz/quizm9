@@ -2,5 +2,28 @@
 <input type="text" id="preg" name="quiz[pregunta]" value="<%= quiz.pregunta %>"/> <p>
 <label for="resp" class="rem">Respuesta:</label>
 <input type="text" id="resp" name="quiz[respuesta]" value="<%= quiz.respuesta %>"/> <p>
+
+<!--//Se añade el campo de índice para el ejercicio P2P del módulo 8-->
+<label for="ind" class="rem">Temática:</label>
+<select id="tema" name="quiz[indiceTema]">
+  <option value="Otro" selected>Otro</option>
+  <option value="Humanidades">Humanidades</option>
+  <option value="Ocio">Ocio</option>
+  <option value="Ciencia">Ciencia</option>
+  <option value="Tecnologia">Tecnología</option>
+</select><p>
+
+<script type="text/javascript">
+  //Este script se utiliza para que a la hora de editar una pregunta, aparezca en el select seleccionada la temática que tiene la pregunta a editar.
+  var tem="<%= quiz.indiceTema %>";
+  var ind=0;
+  if(tem==="Humanidades"){ind=1;}
+  else if(tem==="Ocio"){ind=2;}
+  else if(tem==="Ciencia"){ind=3;}
+  else if(tem==="Tecnologia"){ind=4;}
+  
+  document.getElementById("tema").selectedIndex= ind;
+</script>
+
 <a href="/quizes"><button type="button">Cancelar</button></a>
 <input type="submit" value="Salvar">

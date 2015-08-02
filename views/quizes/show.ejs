@@ -1,4 +1,8 @@
 <form method="get" action="/quizes/<%= quiz.id %>/answer">        
+  
+  <!-- Añadido para la realización del ejercicio P2P del módulo 8. Muestra el índice temático de la pregunta-->
+  <p>Temática: <%= quiz.indiceTema %>:</p>
+
   <%= quiz.pregunta %> <p>
   <p><input type="text" name="respuesta" value="Respuesta"/>
   <input type="submit" value="Enviar"></p>

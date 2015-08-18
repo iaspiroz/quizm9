@@ -45,7 +45,12 @@ exports.new = function(req, res) {
     {pregunta: "Pregunta", respuesta: "Respuesta",indiceTema:"Tema"}//Añado el índice para el ejercicio P2P del módulo 8
   );
 
-  res.render('quizes/new', {quiz: quiz,errors:[]});
+ //Ejercicio P2P módulo 9. 
+ if(req.session.user){
+    res.render('quizes/new.ejs', {quiz: quiz, errors: []});
+  } else{
+    res.render('sessions/new.ejs', {quiz: quiz, errors: []});
+  };
 };
 
 // POST /quizes/create

@@ -27,6 +27,24 @@ app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Añadido para el ejercicio P2P del módulo 9 - Añadir tiempo de sesión
+app.use(function(req, res, next){
+  if(req.session.user){ 
+    if(!req.session.cont){  
+      req.session.cont = new Date().getTime();
+    } else{
+      if(new Date().getTime() - req.session.cont > 120000){ 
+        delete req.session.user;  //Borra sesión
+        req.session.cont = null;  // Resetea contador
+      } else{
+        req.session.cont = new Date().getTime();
+      }
+    }
+  }
+  next();
+});
+
+
 // Helpers dinamicos:
 app.use(function(req, res, next) {
 

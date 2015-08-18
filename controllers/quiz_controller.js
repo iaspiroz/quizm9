@@ -107,3 +107,32 @@ exports.destroy = function(req, res) {
     res.redirect('/quizes');
   }).catch(function(error){next(error)});
 };
+
+
+// GET /quizes/statistics (ampliación opcional módulo 9)
+exports.statistics = function (req, res, next) {
+	models.Quiz.findAll({
+		include: [{ model: models.Comment }]
+	}).then(function (quizes) {
+		var est = {
+			preguntas: quizes.length,
+			comentarios: 0,
+			cmtsPreg: 0,
+			preguntasSinCom: 0,
+			preguntasCom: 0
+		};
+		for (var i = 0; i < quizes.length; i++) {
+			var comments = quizes[i].Comments.length;
+			est.comentarios += comments;
+			if (comments > 0) {
+				est.preguntasCom++;
+			} else {
+				est.preguntasSinCom++;
+			}
+		}
+		est.cmtsPreg = est.comentarios / est.preguntas;
+		res.render('quizes/statistics', {est:est, errors:[]});
+	}).catch(function (err) {
+		next(err);
+	});
+};

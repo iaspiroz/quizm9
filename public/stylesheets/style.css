@@ -12,3 +12,7 @@ nav span             { margin: 0px 10px 0px 0px;}
 
 #ErrorMsgs           { color: #f61; font-size: smaller}
 .right 				 {float: right;} 
+
+div.stats		     { text-align: center;}
+div.stats table      { margin: 0 auto;
+		       text-align: left;}

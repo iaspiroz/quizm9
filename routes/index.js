@@ -29,6 +29,9 @@ router.get('/quizes/:quizId(\\d+)/edit',   sessionController.loginRequired, quiz
 router.put('/quizes/:quizId(\\d+)',        sessionController.loginRequired, quizController.update);
 router.delete('/quizes/:quizId(\\d+)',     sessionController.loginRequired, quizController.destroy);
 
+//Definición de ruta estadísticas - Ampliación opcional P2P módulo 9.
+router.get('/quizes/statistics', 		    quizController.statistics);
+
 // Definición de rutas de comentarios
 router.get('/quizes/:quizId(\\d+)/comments/new',            commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments',              commentController.create);
@@ -37,5 +40,8 @@ router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish', sessionCon
 router.get('/author',function(req,res){
   res.render('author',{author:'Ignacio Aspiroz Argüelles',photo:'images/fry.png',video:'images/homer.mp4',errors:[]});
 });
+
+
+
 
 module.exports = router;
